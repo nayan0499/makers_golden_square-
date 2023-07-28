@@ -4,40 +4,45 @@ Copy this into a `recipe.md` in your project and fill it out.
 
 ## 1. Describe the Problem
 
-_Put or write the user story here. Add any clarifying notes you might have._
+As a user
+So that I can keep track of my music listening
+I want to add tracks I've listened to and see a list of them.
+Assumption - just the song name and artist now 
 
 ## 2. Design the Class Interface
 
 _Include the initializer, public properties, and public methods with all parameters, return values, and side-effects._
 
 ```python
-# EXAMPLE
 
-class Reminder:
+
+# tracks [{artist: Beyonce, song: Halo}, {artist: Beyonce, song: Halo}]
+
+class MusicTracker:
     # User-facing properties:
     #   name: string
 
-    def __init__(self, name):
+    def __init__(self):
         # Parameters:
-        #   name: string
+        #   No parameters
         # Side effects:
-        #   Sets the name property of the self object
+        #   Sets the tracks property of the self object
         pass # No code here yet
 
-    def remind_me_to(self, task):
+    def add(self, track):
         # Parameters:
-        #   task: string representing a single task
+        #   track: a dictionary represent a track
         # Returns:
         #   Nothing
         # Side-effects
-        #   Saves the task to the self object
+        #   Saves the track to the self object
         pass # No code here yet
 
-    def remind(self):
+    def track_list(self):
         # Returns:
-        #   A string reminding the user to do the task
+        #   A list of tracks that have been added
         # Side-effects:
-        #   Throws an exception if no task is set
+        #   None
         pass # No code here yet
 ```
 
@@ -46,30 +51,50 @@ class Reminder:
 _Make a list of examples of how the class will behave in different situations._
 
 ``` python
-# EXAMPLE
 
 """
-Given a name and a task
-#remind reminds the user to do the task
+Given a track
+#adds it to the track list
 """
-reminder = Reminder("Kay")
-reminder.remind_me_to("Walk the dog")
-reminder.remind() # => "Walk the dog, Kay!"
+music_tracker = MusicTracker()
+music_tracker.add({"Artist": "Beyonce", "Song":"Halo"})
+music_tracker.track_list() # => [{"Artist": "Beyonce", "Song":"Halo"}]
 
 """
-Given a name and no task
-#remind raises an exception
+Given two tracks 
+#adds both tracks to the track list
 """
-reminder = Reminder("Kay")
-reminder.remind() # raises an error with the message "No task set."
+music_tracker = MusicTracker()
+music_tracker.add({"Artist": "Beyonce", "Song":"Halo"})
+music_tracker.add({"Artist": "Beyonce", "Song":"Single ladies"})
+music_tracker.track_list() # => [{"Artist": "Beyonce", "Song":"Halo"},{"Artist": "Beyonce", "Song":"Single ladies"}]
 
 """
-Given a name and an empty task
-#remind still reminds the user to do the task, even though it looks odd
+Given an empty string as a track
+#raise an error 
 """
-reminder = Reminder("Kay")
-reminder.remind_me_to("")
-reminder.remind() # => ", Kay!"
+music_tracker = MusicTracker()
+music_tracker.add("") # => "No track input"
+
+"""
+Given track has already been added
+raise an error 
+"""
+music_tracker = MusicTracker()
+music_tracker.add({"Artist": "Beyonce", "Song":"Halo"})
+music_tracker.add({"Artist": "Beyonce", "Song":"Halo"})
+music_tracker.add({"Artist": "Beyonce", "Song":"Single ladies"})
+music_tracker.track_list() # => [{"Artist": "Beyonce", "Song":"Halo"},{"Artist": "Beyonce", "Song":"Single ladies"}]
+
+
+"""
+Given track list is empty 
+returns empty list
+"""
+
+music_tracker = MusicTracker()
+music_tracker.track_list() # => []
+
 ```
 
 _Encode each example as a test. You can add to the above list as you go._
