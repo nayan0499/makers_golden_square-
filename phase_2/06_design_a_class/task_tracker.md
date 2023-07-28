@@ -4,40 +4,55 @@ Copy this into a `recipe.md` in your project and fill it out.
 
 ## 1. Describe the Problem
 
-_Put or write the user story here. Add any clarifying notes you might have._
+As a user
+So that I can keep track of my tasks
+I want a program that I can add todo tasks to and see a list of them. 
+
+format list of tasks 
+
+As a user
+So that I can focus on tasks to complete
+I want to mark tasks as complete and have them disappear from the list.
 
 ## 2. Design the Class Interface
 
 _Include the initializer, public properties, and public methods with all parameters, return values, and side-effects._
 
 ```python
-# EXAMPLE
 
-class Reminder:
-    # User-facing properties:
-    #   name: string
+class TaskManager:
 
-    def __init__(self, name):
+    def __init__(self):
         # Parameters:
-        #   name: string
+        #   None
         # Side effects:
-        #   Sets the name property of the self object
+        #   Sets the tasks property to self object 
         pass # No code here yet
 
-    def remind_me_to(self, task):
+    def save_task(self, task):
         # Parameters:
-        #   task: string representing a single task
+        #   task: string representing a single task 
         # Returns:
         #   Nothing
         # Side-effects
         #   Saves the task to the self object
+        #   Throws an exeption if task is empty 
         pass # No code here yet
 
-    def remind(self):
+    def format(self): 
+        # Parameters: 
+        #   None 
+        # Returns: 
+        #   A string represent tasks 
+        # Side-effects 
+        #   Nothing
+
+    def complete_task(self, task):
         # Returns:
-        #   A string reminding the user to do the task
+        #   None 
         # Side-effects:
-        #   Throws an exception if no task is set
+        #   Remove task from the task list 
+        #   Throws an exception if task is not in the list 
         pass # No code here yet
 ```
 
@@ -49,27 +64,67 @@ _Make a list of examples of how the class will behave in different situations._
 # EXAMPLE
 
 """
-Given a name and a task
-#remind reminds the user to do the task
+Given a task, 
+save the task and print a list of tasks 
 """
-reminder = Reminder("Kay")
-reminder.remind_me_to("Walk the dog")
-reminder.remind() # => "Walk the dog, Kay!"
+task_manager = TaskManager()
+first_task = task_manager.save_task("Do the dishes")
+task_manager.format() # => "Do the dishes"
 
 """
-Given a name and no task
-#remind raises an exception
+Given two tasks, 
+save the tasks and print a list of the tasks 
 """
-reminder = Reminder("Kay")
-reminder.remind() # raises an error with the message "No task set."
+task_manager = TaskManager()
+task_manager.save_task("Do the dishes")
+task_manager.save_task("Walk the dog")
+task_manager.format() # => "Do the dishes
+                      #     Walk the dog"
+        
 
 """
-Given a name and an empty task
-#remind still reminds the user to do the task, even though it looks odd
+Given an empty task
+raise an error 
 """
-reminder = Reminder("Kay")
-reminder.remind_me_to("")
-reminder.remind() # => ", Kay!"
+task_manager = TaskManager()
+task_manager.save_task("")# => "No task provided"
+
+
+"""
+Given a completed task, 
+remove the task from the list 
+"""
+task_manager = TaskManager()
+task_manager.save_task("Do the dishes")
+task_manager.save_task("Walk the dog")
+task_manager.complete_task("Do the dishes")
+task_manager.format() # => "Walk the dog"
+
+
+"""
+Given a completed task thats not in the list, 
+raise an error 
+"""
+task_manager = TaskManager()
+task_manager.save_task("Do the dishes")
+task_manager.save_task("Walk the dog")
+task_manager.complete_task("Watch TV") # => "Task does not exist"
+
+
+"""
+Given a task in caps, 
+remove the task from the list 
+"""
+task_manager = TaskManager()
+task_manager.save_task("Do the dishes")
+task_manager.save_task("Walk the dog")
+task_manager.complete_task("DO THE DISHES")
+task_manager.format() # => "Walk the dog"
+
+
+
+
+
 ```
 
 _Encode each example as a test. You can add to the above list as you go._
