@@ -2,7 +2,26 @@
 
 ## 1. Describe the Problem
 
-_Put or write the user story here. Add any clarifying notes you might have._
+As a user
+So that I can record my experiences
+I want to keep a regular diary
+
+As a user
+So that I can reflect on my experiences
+I want to read my past diary entries
+
+As a user
+So that I can reflect on my experiences in my busy day
+I want to select diary entries to read based on how much time I have and my reading speed
+
+As a user
+So that I can keep track of my tasks
+I want to keep a todo list along with my diary
+
+As a user
+So that I can keep track of my contacts
+I want to see a list of all of the mobile phone numbers in all my diary entries
+
 
 ## 2. Design the Class System
 
@@ -10,71 +29,154 @@ _Consider diagramming out the classes and their relationships. Take care to
 focus on the details you see as important, not everything. The diagram below
 uses asciiflow.com but you could also use excalidraw.com, draw.io, or miro.com_
 
+# nouns - objects
+diary entries
+reading speed
+time 
+tasks 
+todo list 
+diary 
+contacts 
+phone numbers
+
+# verbs - describing
+read my past diary entries
+select diary entries
+keep track of my tasks
+keep a todo list along with my diary
+see a list of all of the mobile phone numbers
+
 ```
 ┌────────────────────────────┐
-│ MusicPlayer                │
+│ Diary                      │
 │                            │
-│ - tracks                   │
-│ - add(track)               │
-│ - search_by_title(keyword) │
-│   => [tracks...]           │
+│ - diary entry list         │
+│ - todo list                │
+│ - phone numbers list       │
+│                            │
 └───────────┬────────────────┘
             │
             │ owns a list of
             ▼
 ┌─────────────────────────┐
-│ Track(title, artist)    │
+│ DiaryEntry              │
 │                         │
 │ - title                 │
-│ - artist                │
-│ - format()              │
-│   => "TITLE by ARTIST"  │
+│ - content               │
+│ - phone number          │
+│                         │
 └─────────────────────────┘
 ```
 
 _Also design the interface of each class in more detail._
 
 ```python
-class MusicLibrary:
+class Diary:
     # User-facing properties:
-    #   tracks: list of instances of Track
+    #   diary_enteries: list of all diary enteries
+    #   todo_list: list of all the todo's
+    #   phone_numbers: list of all phone numbers
 
     def __init__(self):
         pass # No code here yet
 
-    def add(self, track):
+    def add_diary_entry(self, diary_entry):
         # Parameters:
-        #   track: an instance of Track
+        #   diary entry: an instance of DiaryEntry
         # Side-effects:
-        #   Adds the track to the tracks property of the self object
+        #   Adds the diary_entry to the diary_entries property of the self object
         pass # No code here yet
 
-    def search_by_title(self, keyword):
+    def add_todo(self, todo):
         # Parameters:
-        #   keyword: string
+        #   todo: an instance of Todo
+        # Side-effects:
+        #   Adds the todo to the todo_list property of the self object
+        pass # No code here yet
+
+    def list_diary_entries(self):
+        # Parameters:
+        #   None
         # Returns:
-        #   A list of the Track objects that have titles that include the keyword
+        #   A list of the diary_entries object
+        pass # No code here yet
+
+    def list_todos(self):
+        # Parameters:
+        #   None
+        # Returns:
+        #   A list of the todo_list object
+        pass # No code here yet
+
+    def list_phone_numbers(self):
+        # Parameters:
+        #   None
+        # Returns:
+        #   A list of the phone_numbers object
+        pass # No code here yet
+
+    def get_diary_entry_based_on_reading_speed_and_time(self, wpm, minutes):
+        # Parameters:
+        #   wpm - words per minute the user can read
+        #   minutes - time in minutes the user has to read 
+        # Returns:
+        #   A diary entry which is most suitable for the user to read in the specified time
         pass # No code here yet
 
 
-class Track:
+class DiaryEntry:
     # User-facing properties:
     #   title: string
-    #   artist: string
+    #   contents: string
+    #   phone_number_list: list of phone numbers
 
     def __init__(self, title, artist):
         # Parameters:
         #   title: string
-        #   artist: string
+        #   content: string
         # Side-effects:
-        #   Sets the title and artist properties
+        #   Sets the title and contents properties
         pass # No code here yet
 
-    def format(self):
+    def extract_phone_number(self):
+        # saves the phone number in phone_numbers property
         # Returns:
-        #   A string of the form "TITLE by ARTIST"
+        #   None
         pass # No code here yet
 
+     def get_phone_numbers(self):
+        # Returns:
+        #   A list of the phone numbers
+        pass # No code here yet
+
+
+class PhoneNumber:
+    # User-facing properties:
+    #   number: int
+
+    def __init__(self, phone_number):
+        # Parameters:
+        #   phone number: int
+        # Side-effects:
+        #   Sets the phone number properties
+        pass # No code here yet
+
+    def check_phone_number_is_valid(number):
+        # checks if the number is valid
+        # return true or false
+        pass # No code here yet
+
+
+class Task:
+    # User-facing properties:
+    #   task: str
+
+    def __init__(self, task):
+        # Parameters:
+        #   task: str
+        # Side-effects:
+        #   Sets the task properties
+        pass # No code here yet
 ```
 
 ## 3. Create Examples as Integration Tests
@@ -86,16 +188,18 @@ combinations that reflect the ways in which the system will be used._
 # EXAMPLE
 
 """
-Given a library
-When we add two tracks
-We see those tracks reflected in the tracks list
+Given a Diary entry
+We see that entry reflected in the diary entries list
 """
-library = MusicLibrary()
-track_1 = Track("Carte Blanche", "Veracocha")
-track_2 = Track("Synaesthesia", "The Thrillseekers")
-library.add(track_1)
-library.add(track_2)
-library.tracks # => [track_1, track_2]
+diary = Diary()
+diary_entry_1 = DiaryEntry("Monday 1st August", "I am learning to design a multi-class program")
+diary.add_diary_entry(diary_entry_1)
+diary.list_diary_entries() # => [diary_entry_1]
+
+
+
+
+
 ```
 
 ## 4. Create Examples as Unit Tests
