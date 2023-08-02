@@ -71,112 +71,79 @@ see a list of all of the mobile phone numbers
 _Also design the interface of each class in more detail._
 
 ```python
-class Diary:
-    # User-facing properties:
-    #   diary_enteries: list of all diary enteries
-    #   todo_list: list of all the todo's
-    #   phone_numbers: list of all phone numbers
 
-    def __init__(self):
-        pass # No code here yet
+class Diary: 
+    
+    def __init__(self): 
+        pass 
+    
+    def add(self, diary_entry):
+        # diary_entry: an instance of DiaryEntry 
+        # diary_entry will be added to the diary_entries property 
+        pass
 
-    def add_diary_entry(self, diary_entry):
-        # Parameters:
-        #   diary entry: an instance of DiaryEntry
-        # Side-effects:
-        #   Adds the diary_entry to the diary_entries property of the self object
-        pass # No code here yet
-
-    def add_todo(self, todo):
-        # Parameters:
-        #   todo: an instance of Todo
-        # Side-effects:
-        #   Adds the todo to the todo_list property of the self object
-        pass # No code here yet
-
-    def list_diary_entries(self):
-        # Parameters:
-        #   None
-        # Returns:
-        #   A list of the diary_entries object
-        pass # No code here yet
-
-    def list_todos(self):
-        # Parameters:
-        #   None
-        # Returns:
-        #   A list of the todo_list object
-        pass # No code here yet
-
-    def list_phone_numbers(self):
-        # Parameters:
-        #   None
-        # Returns:
-        #   A list of the phone_numbers object
-        pass # No code here yet
-
-    def get_diary_entry_based_on_reading_speed_and_time(self, wpm, minutes):
-        # Parameters:
-        #   wpm - words per minute the user can read
-        #   minutes - time in minutes the user has to read 
-        # Returns:
-        #   A diary entry which is most suitable for the user to read in the specified time
-        pass # No code here yet
-
+    def get_all_diary_entries(self):
+        # return all diary entries 
+        pass
 
 class DiaryEntry:
-    # User-facing properties:
-    #   title: string
-    #   contents: string
-    #   phone_number_list: list of phone numbers
+    
+    def __init__(self, title, contents): 
+        # arguments: 
+            # title: str 
+            # contents: str 
+        # side effects: 
+            # set title as title property 
+            # set contents as contents property 
+        # returns None 
+        pass
+    
+class TaskList:
+    
+    def __init__(self): 
+        pass
 
-    def __init__(self, title, artist):
-        # Parameters:
-        #   title: string
-        #   content: string
-        # Side-effects:
-        #   Sets the title and contents properties
-        pass # No code here yet
+    def add(self, task):
+        # arguments: 
+        #   task: an instance of Task 
+        # side effects: 
+        #   add task to the list of tasks property 
 
-    def extract_phone_number(self):
-        # saves the phone number in phone_numbers property
-        # Returns:
-        #   None
-        pass # No code here yet
-
-     def get_phone_numbers(self):
-        # Returns:
-        #   A list of the phone numbers
-        pass # No code here yet
-
-
-class PhoneNumber:
-    # User-facing properties:
-    #   number: int
-
-    def __init__(self, name, phone_number):
-        # Parameters:
-        #   phone number: int
-        # Side-effects:
-        #   Sets the phone number properties
-        pass # No code here yet
-
-    def check_phone_number_is_valid(number):
-        # checks if the number is valid
-        # return true or false
-        pass # No code here yet
+        pass
 
 
 class Task:
-    # User-facing properties:
-    #   task: str
+    
+    def __init__(self, task): 
+        # arguments:
+            # task: str 
+        # side effects: 
+            # set task property as task 
+        pass 
 
-    def __init__(self, task):
-        # Parameters:
-        #   task: str
-        # Side-effects:
-        #   Sets the task properties
-        pass # No code here yet
+
+class PhoneNumberExtractor: 
+    
+    def __init__(self):
+        pass 
+
+    def extract(self, content):
+        # arguments:
+        #   diary: an instance of diary 
+        # return phone number as a string 
+        pass
+
+
+class ReadableEntryFinder: 
+    
+    def __init__(self):
+        pass
+
+    def get_diary_entry_based_on_reading_speed_and_time(self, wpm, minutes):
+        # returns diary entry that is the most suitable to read in the time given. 
+
+
+
 ```
 
 ## 3. Create Examples as Integration Tests
